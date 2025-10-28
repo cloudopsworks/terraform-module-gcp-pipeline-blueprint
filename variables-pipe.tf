@@ -11,7 +11,7 @@ variable "service_accounts" {
   description = "A map of Service accounts for various IAM users"
   type = object({
     project_id        = optional(string, "")
-    preview_publisher = optional(string, "eks-preview-publisher")
+    preview_publisher = optional(string, "gke-preview-publisher")
     terraform         = optional(string, "terraform-access")
     build_publisher   = optional(string, "build-publisher")
   })
