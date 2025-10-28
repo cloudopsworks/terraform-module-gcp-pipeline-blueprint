@@ -15,7 +15,7 @@ locals {
       description  = "GKE Preview Publisher Service Account"
       members = [
         {
-          member = var.service_accounts.project_id == "" ? data.google_service_account.preview_publisher_sa.member : "serviceAccount:${var.service_accounts.preview_publisher}@${var.service_accounts.project_id}.iam.gserviceaccount.com"
+          member = var.service_accounts.project_id == "" ? data.google_service_account.preview_publisher_sa[0].member : "serviceAccount:${var.service_accounts.preview_publisher}@${var.service_accounts.project_id}.iam.gserviceaccount.com"
           role   = "roles/iamServiceAccountUser"
         }
       ]
@@ -28,7 +28,7 @@ locals {
       description  = "Build Publisher Service Account"
       members = [
         {
-          member = var.service_accounts.project_id == "" ? data.google_service_account.build_publisher_sa.member : "serviceAccount:${var.service_accounts.build_publisher}@${var.service_accounts.project_id}.iam.gserviceaccount.com"
+          member = var.service_accounts.project_id == "" ? data.google_service_account.build_publisher_sa[0].member : "serviceAccount:${var.service_accounts.build_publisher}@${var.service_accounts.project_id}.iam.gserviceaccount.com"
           role   = "roles/iamServiceAccountUser"
         }
       ]
