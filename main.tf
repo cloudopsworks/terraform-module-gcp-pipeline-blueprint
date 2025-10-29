@@ -18,7 +18,7 @@ data "google_service_account" "terraform_sa" {
 }
 
 data "google_service_account" "build_publisher_sa" {
-  count      = var.service_accounts.build_publisher == "" ? 1 : 0
+  count      = var.service_accounts.project_id == "" ? 1 : 0
   account_id = var.service_accounts.build_publisher
 }
 
