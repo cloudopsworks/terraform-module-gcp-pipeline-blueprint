@@ -21,7 +21,7 @@ locals {
       ]
       roles = [
         {
-          role = "roles/${replace(var.service_accounts.preview_publisher, "-", "_")}"
+          role = "projects/${data.google_project.current.project_id}/roles/${replace(var.service_accounts.preview_publisher, "-", "_")}"
         }
       ]
     },
@@ -39,7 +39,7 @@ locals {
       ]
       roles = [
         {
-          role = "roles/${replace(var.service_accounts.build_publisher, "-", "_")}"
+          role = "projects/${data.google_project.current.project_id}/roles/${replace(var.service_accounts.build_publisher, "-", "_")}"
         }
       ]
     }
