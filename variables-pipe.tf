@@ -17,3 +17,11 @@ variable "service_accounts" {
   })
   default = {}
 }
+
+variable "appengine" {
+  description = "Google App Engine configuration"
+  type = object({
+    enabled = optional(bool, false)
+  })
+  default = {}
+}

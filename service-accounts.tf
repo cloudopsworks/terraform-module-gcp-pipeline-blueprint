@@ -21,7 +21,7 @@ locals {
       ]
       roles = [
         {
-          role = "projects/${data.google_project.current.project_id}/roles/${replace(var.service_accounts.preview_publisher, "-", "_")}"
+          role = "projects/${var.service_accounts.project_id == "" ? data.google_project.current.project_id : var.service_accounts.project_id}/roles/${replace(var.service_accounts.preview_publisher, "-", "_")}"
         }
       ]
     },
@@ -39,10 +39,29 @@ locals {
       ]
       roles = [
         {
-          role = "projects/${data.google_project.current.project_id}/roles/${replace(var.service_accounts.build_publisher, "-", "_")}"
+          role = "projects/${var.service_accounts.project_id == "" ? data.google_project.current.project_id : var.service_accounts.project_id}/roles/${replace(var.service_accounts.build_publisher, "-", "_")}"
         }
       ]
     }
   ]
-  service_accounts = concat(local.sa_preview, local.sa_build)
+  sa_appengine = var.appengine.enabled ? [
+    {
+      name_prefix  = "appengine-deployer"
+      env_suffix   = true
+      display_name = "App Engine Deployer"
+      description  = "App Engine Deployer Service Account"
+      members = [
+        {
+          member = var.service_accounts.project_id == "" ? data.google_service_account.terraform_sa[0].member : "serviceAccount:${var.service_accounts.terraform}@${var.service_accounts.project_id}.iam.gserviceaccount.com"
+          role   = "roles/iam.serviceAccountTokenCreator"
+        }
+      ]
+      roles = [
+        {
+          ref = "appengine-deployer"
+        }
+      ]
+    }
+  ] : []
+  service_accounts = concat(local.sa_preview, local.sa_build, local.sa_appengine)
 }

@@ -8,5 +8,22 @@
 #
 
 locals {
-  roles = {}
+  role_appengine = var.appengine.enabled ? [
+    {
+      name_prefix = "appengine-deployer"
+      title       = "App Engine Deployer"
+      description = "Role to deploy App Engine applications"
+      permissions = [
+        "appengine.applications.get",
+        "appengine.versions.create",
+        "appengine.versions.update",
+        "appengine.versions.delete",
+        "appengine.instances.list",
+        "appengine.instances.delete",
+        "appengine.services.get",
+        "appengine.services.update",
+      ]
+    }
+  ] : []
+  roles = concat(local.role_appengine)
 }
