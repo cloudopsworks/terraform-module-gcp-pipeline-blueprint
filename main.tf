@@ -7,3 +7,28 @@
 #     Distributed Under Apache v2.0 License
 #
 
+data "google_service_account" "preview_publisher_sa" {
+  count      = var.service_accounts.project_id == "" ? 1 : 0
+  account_id = var.service_accounts.preview_publisher
+}
+
+data "google_service_account" "terraform_sa" {
+  count      = var.service_accounts.project_id == "" ? 1 : 0
+  account_id = var.service_accounts.terraform
+}
+
+data "google_service_account" "build_publisher_sa" {
+  count      = var.service_accounts.project_id == "" ? 1 : 0
+  account_id = var.service_accounts.build_publisher
+}
+
+module "blueprint" {
+  #source           = "git::https://github.com/cloudopsworks/terraform-module-gcp-iam-sa-roles.git//?ref=v0.1.0-alpha.6"
+  source           = "/Users/berah/work/cloudopsworks/terraform-module-gcp-iam-sa-roles"
+  is_hub           = var.is_hub
+  spoke_def        = var.spoke_def
+  org              = var.org
+  extra_tags       = var.extra_tags
+  roles            = local.roles
+  service_accounts = local.service_accounts
+}
