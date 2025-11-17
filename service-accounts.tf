@@ -63,5 +63,44 @@ locals {
       ]
     }
   ] : []
-  service_accounts = concat(local.sa_preview, local.sa_build, local.sa_appengine)
+  sa_cloudrun = var.cloudrun.enabled ? [
+    {
+      name_prefix  = "cloudrun-deployer"
+      env_suffix   = true
+      display_name = "Cloud Run Deployer"
+      description  = "Cloud Run Deployer Service Account"
+      members = [
+        {
+          member = var.service_accounts.project_id == "" ? data.google_service_account.terraform_sa[0].member : "serviceAccount:${var.service_accounts.terraform}@${var.service_accounts.project_id}.iam.gserviceaccount.com"
+          role   = "roles/iam.serviceAccountTokenCreator"
+        }
+      ]
+      roles = [
+        {
+          ref = "cloudrun-deployer"
+        }
+      ]
+    }
+  ] : []
+  sa_gke = var.gke.enabled ? [
+    {
+      name_prefix  = "gke-deployer"
+      env_suffix   = true
+      display_name = "GKE Deployer"
+      description  = "GKE Deployer Service Account"
+      members = [
+        {
+          member = var.service_accounts.project_id == "" ? data.google_service_account.terraform_sa[0].member : "serviceAccount:${var.service_accounts.terraform}@${var.service_accounts.project_id}.iam.gserviceaccount.com"
+          role   = "roles/iam.serviceAccountTokenCreator"
+        }
+      ]
+      roles = [
+        {
+          ref = "gke-deployer"
+        }
+      ]
+    }
+  ] : []
+
+  service_accounts = concat(local.sa_preview, local.sa_build, local.sa_appengine, local.sa_cloudrun, local.sa_gke)
 }
