@@ -67,7 +67,7 @@ locals {
           role = "roles/storage.admin"
         },
         {
-          role = "roles/resourcemanager.organizationViewer"
+          role = "roles/resourcemanager.folderViewer"
         }
       ]
     }
@@ -92,7 +92,7 @@ locals {
           role = "roles/iam.serviceAccountAdmin"
         },
         {
-          role  = "roles/resourcemanager.organizationViewer"
+          role  = " "
         }
       ]
     }
