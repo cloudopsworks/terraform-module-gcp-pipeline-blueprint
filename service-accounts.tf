@@ -59,6 +59,15 @@ locals {
       roles = [
         {
           ref = "appengine-deployer"
+        },
+        {
+          name = "roles/iam.serviceAccountAdmin"
+        },
+        {
+          name = "roles/storage.admin"
+        },
+        {
+          name = "roles/resourcemanager.organizationViewer"
         }
       ]
     }
@@ -78,6 +87,12 @@ locals {
       roles = [
         {
           ref = "cloudrun-deployer"
+        },
+        {
+          name = "roles/iam.serviceAccountAdmin"
+        },
+        {
+          name = "roles/resourcemanager.organizationViewer"
         }
       ]
     }
