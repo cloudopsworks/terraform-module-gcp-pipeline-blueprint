@@ -25,3 +25,19 @@ variable "appengine" {
   })
   default = {}
 }
+
+variable "cloudrun" {
+  description = "Google Cloud Run configuration"
+  type = object({
+    enabled = optional(bool, false)
+  })
+  default = {}
+}
+
+variable "gke" {
+  description = "Google GKE configuration"
+  type = object({
+    enabled = optional(bool, false)
+  })
+  default = {}
+}
