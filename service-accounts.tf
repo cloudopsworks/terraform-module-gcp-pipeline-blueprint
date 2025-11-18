@@ -68,6 +68,9 @@ locals {
         },
         {
           role = "roles/viewer"
+        },
+        {
+          role = "roles/resourcemanager.projectIamAdmin"
         }
       ]
     }
@@ -93,6 +96,9 @@ locals {
         },
         {
           role  = "roles/viewer"
+        },
+        {
+          role = "roles/resourcemanager.projectIamAdmin"
         }
       ]
     }
