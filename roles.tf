@@ -15,13 +15,19 @@ locals {
       description = "Role to deploy App Engine applications"
       permissions = [
         "appengine.applications.get",
+        "appengine.applications.listRuntimes",
+        "appengine.applications.update",
         "appengine.versions.create",
+        "appengine.versions.update",
+        "appengine.versions.list",
         "appengine.versions.update",
         "appengine.versions.delete",
         "appengine.instances.list",
         "appengine.instances.delete",
         "appengine.services.get",
         "appengine.services.update",
+        "appengine.services.delete",
+        "appengine.services.list",
       ]
     }
   ] : []
