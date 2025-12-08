@@ -71,6 +71,9 @@ locals {
         },
         {
           role = "roles/resourcemanager.projectIamAdmin"
+        },
+        {
+          role = "roles/cloudbuild.builds.editor"
         }
       ]
     }
