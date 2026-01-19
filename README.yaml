@@ -1,4 +1,4 @@
-name: Terraform Transit Gateway Module
+name: Terraform GCP Pipeline Blueprint Module
 #logo: logo/logo.jpg
 
 license: "APACHE2"
@@ -8,23 +8,81 @@ copyrights:
     url: "https://cloudops.works"
     year: "2024"
 
-github_repo: cloudopsworks/terraform-module-aws-vpc-setup
+github_repo: cloudopsworks/terraform-module-gcp-pipeline-blueprint
 
 description: |-
-  VPC Module for setting up transit gateway with ResourceAccessMananger support.
+  This module provides a blueprint for setting up GCP pipeline resources, including IAM roles and service accounts tailored for different deployment targets like App Engine, Cloud Run, and GKE.
 
 # Introduction to the project
-#introduction: |-
-#  This is an introduction.
+introduction: |-
+  The GCP Pipeline Blueprint module is designed to streamline the creation of IAM roles and service account bindings necessary for CI/CD pipelines on Google Cloud Platform. It supports various compute services and ensures that the least privilege principle is applied by creating custom roles with specific permissions for deployment tasks.
 
 # How to use this project
-#usage: |-
+usage: |-
+  To use this module in a Terragrunt configuration, you can include it in your `terragrunt.hcl` file. The module requires organization details and allows optional configuration for specific GCP services.
+
+  ### Variable Structure (YAML)
+  ```yaml
+  # Core Configuration
+  is_hub: false                     # (Optional) Is this a hub or spoke configuration? Default is false.
+  spoke_def: "001"                  # (Optional) Spoke ID Number, must be a 3 digit number. Default is "001".
+  org:
+    organization_name: "myorg"      # (Required) The name of the organization.
+    organization_unit: "myou"       # (Required) The name of the organization unit.
+    environment_type: "dev"         # (Required) The type of the environment (e.g., dev, prod).
+    environment_name: "myenv"       # (Required) The name of the environment.
+  extra_tags: {}                    # (Optional) Extra tags to add to the resources.
+
+  # Service Account Configuration
+  service_accounts:
+    project_id: ""                   # (Optional) The project id where the service accounts are located. Default is the current project.
+    preview_publisher: "gke-preview-publisher" # (Optional) The name of the preview publisher service account.
+    terraform: "terraform-access"    # (Optional) The name of the terraform service account.
+    build_publisher: "build-publisher" # (Optional) The name of the build publisher service account.
+
+  # Deployment Targets
+  appengine:
+    enabled: false                   # (Optional) Enable App Engine configuration.
+  cloudrun:
+    enabled: false                   # (Optional) Enable Cloud Run configuration.
+  gke:
+    enabled: false                   # (Optional) Enable GKE configuration.
+  firebase_test_lab:
+    enabled: false                   # (Optional) Enable Firebase Test Lab configuration.
+  firebase_test_lab_bucket_name: "" # (Optional) The name of the Firebase Test Lab bucket.
+  ```
 
 # Example usage
-#examples: |-
+examples: |-
+  ### Terragrunt Example
+  ```hcl
+  terraform {
+    source = "git::https://github.com/cloudopsworks/terraform-module-gcp-pipeline-blueprint.git?ref=v1.0.0"
+  }
+
+  inputs = {
+    org = {
+      organization_name = "cloudopsworks"
+      organization_unit = "shared"
+      environment_type  = "prod"
+      environment_name  = "common"
+    }
+    gke = {
+      enabled = true
+    }
+    service_accounts = {
+      project_id = "my-gcp-project-id"
+    }
+  }
+  ```
 
 # How to get started quickly
-#quickstart: |-
+quickstart: |-
+  1. Create a `terragrunt.hcl` file.
+  2. Reference this module as the source.
+  3. Provide the required `org` object in the `inputs` block.
+  4. Enable the desired deployment targets (e.g., `gke = { enabled = true }`).
+  5. Run `terragrunt apply`.
 
 include:
   - "docs/targets.md"
