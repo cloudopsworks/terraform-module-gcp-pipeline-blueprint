@@ -98,7 +98,7 @@ locals {
           role = "roles/iam.serviceAccountAdmin"
         },
         {
-          role  = "roles/viewer"
+          role = "roles/viewer"
         },
         {
           role = "roles/resourcemanager.projectIamAdmin"
@@ -125,6 +125,25 @@ locals {
       ]
     }
   ] : []
+  sa_firebase_test = var.firebase_test_lab.enabled ? [
+    {
+      name_prefix  = "firebase-test-lab-runner"
+      env_suffix   = true
+      display_name = "Firebase Test Lab Runner"
+      description  = "Firebase Test Lab Runner Service Account"
+      members = [
+        {
+          member = var.service_accounts.project_id == "" ? data.google_service_account.terraform_sa[0].member : "serviceAccount:${var.service_accounts.terraform}@${var.service_accounts.project_id}.iam.gserviceaccount.com"
+          role   = "roles/iam.serviceAccountTokenCreator"
+        }
+      ]
+      roles = [
+        {
+          ref = "firebase-test-lab-runner"
+        }
+      ]
+    }
+  ] : []
 
-  service_accounts = concat(local.sa_preview, local.sa_build, local.sa_appengine, local.sa_cloudrun, local.sa_gke)
+  service_accounts = concat(local.sa_preview, local.sa_build, local.sa_appengine, local.sa_cloudrun, local.sa_gke, local.sa_firebase_test)
 }

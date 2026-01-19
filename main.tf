@@ -23,7 +23,7 @@ data "google_service_account" "build_publisher_sa" {
 }
 
 module "blueprint" {
-  source           = "git::https://github.com/cloudopsworks/terraform-module-gcp-iam-sa-roles.git//?ref=v0.1.0-alpha.17"
+  source = "git::https://github.com/cloudopsworks/terraform-module-gcp-iam-sa-roles.git//?ref=v0.1.0-alpha.17"
   # source           = "/Users/berah/work/cloudopsworks/terraform-module-gcp-iam-sa-roles"
   is_hub           = var.is_hub
   spoke_def        = var.spoke_def
