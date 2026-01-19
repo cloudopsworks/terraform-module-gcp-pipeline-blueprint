@@ -143,6 +143,14 @@ locals {
         },
         {
           role = "roles/firebase.analyticsViewer"
+        },
+        {
+          role = "roles/storage.objectAdmin"
+          condition = {
+            title       = "Limit to Firebase Test Lab Bucket"
+            description = "Grants access only to the specified Firebase Test Lab bucket"
+            expression  = "resource.name.startsWith('projects/_/buckets/${var.firebase_test_lab_bucket_name}')"
+          }
         }
       ]
     }
