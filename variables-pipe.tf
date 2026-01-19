@@ -41,3 +41,11 @@ variable "gke" {
   })
   default = {}
 }
+
+variable "firebase_test_lab" {
+  description = "Google Firebase Test Lab configuration"
+  type = object({
+    enabled = optional(bool, false)
+  })
+  default = {}
+}
