@@ -7,3 +7,10 @@
 #     Distributed Under Apache v2.0 License
 #
 
+output "roles" {
+  value = module.blueprint.roles
+}
+
+output "service_accounts" {
+  value = module.blueprint.service_accounts
+}
