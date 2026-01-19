@@ -63,19 +63,19 @@ locals {
       ]
     }
   ] : []
-  role_firebase_test = var.firebase_test_lab.enabled ? [
-    {
-      name_prefix = "fb-test-lab-runner"
-      title       = "Firebase Test Lab Runner"
-      description = "Role to run tests in Firebase Test Lab"
-      permissions = [
-        "firebase.testLab.runs.create",
-        "firebase.testLab.runs.get",
-        "firebase.testLab.runs.list",
-        "firebase.testLab.runs.delete",
-      ]
-    }
-  ] : []
+  # role_firebase_test = var.firebase_test_lab.enabled ? [
+  #   {
+  #     name_prefix = "fb-test-lab-runner"
+  #     title       = "Firebase Test Lab Runner"
+  #     description = "Role to run tests in Firebase Test Lab"
+  #     permissions = [
+  #       "firebase.testLab.runs.create",
+  #       "firebase.testLab.runs.get",
+  #       "firebase.testLab.runs.list",
+  #       "firebase.testLab.runs.delete",
+  #     ]
+  #   }
+  # ] : []
   role_preview = []
-  roles        = concat(local.role_appengine, local.role_cloudrun, local.role_gke, local.role_preview, local.role_firebase_test)
+  roles        = concat(local.role_appengine, local.role_cloudrun, local.role_gke, local.role_preview)
 }

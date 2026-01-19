@@ -139,7 +139,10 @@ locals {
       ]
       roles = [
         {
-          ref = "fb-test-lab-runner"
+          role = "roles/cloudtestservice.testAdmin"
+        },
+        {
+          role = "roles/firebase.analyticsViewer"
         }
       ]
     }
