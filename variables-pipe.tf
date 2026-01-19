@@ -49,3 +49,9 @@ variable "firebase_test_lab" {
   })
   default = {}
 }
+
+variable "firebase_test_lab_bucket_name" {
+  description = "The name of the Firebase Test Lab bucket"
+  type        = string
+  default     = ""
+}
