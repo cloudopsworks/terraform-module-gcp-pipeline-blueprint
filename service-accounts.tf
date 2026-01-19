@@ -127,7 +127,7 @@ locals {
   ] : []
   sa_firebase_test = var.firebase_test_lab.enabled ? [
     {
-      name_prefix  = "firebase-test-lab-runner"
+      name_prefix  = "fb-test-lab-runner"
       env_suffix   = true
       display_name = "Firebase Test Lab Runner"
       description  = "Firebase Test Lab Runner Service Account"
@@ -139,7 +139,7 @@ locals {
       ]
       roles = [
         {
-          ref = "firebase-test-lab-runner"
+          ref = "fb-test-lab-runner"
         }
       ]
     }
