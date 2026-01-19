@@ -65,7 +65,7 @@ locals {
   ] : []
   role_firebase_test = var.firebase_test_lab.enabled ? [
     {
-      name_prefix = "firebase-test-lab-runner"
+      name_prefix = "fb-test-lab-runner"
       title       = "Firebase Test Lab Runner"
       description = "Role to run tests in Firebase Test Lab"
       permissions = [
