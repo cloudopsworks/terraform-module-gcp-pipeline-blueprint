@@ -11,12 +11,14 @@
 variable "is_hub" {
   description = "Is this a hub or spoke configuration?"
   type        = bool
+  # is_hub: false                     # (Optional) Is this a hub or spoke configuration? Default is false.
   default     = false
 }
 
 variable "spoke_def" {
   description = "Spoke ID Number, must be a 3 digit number"
   type        = string
+  # spoke_def: "001"                  # (Optional) Spoke ID Number, must be a 3 digit number. Default is "001".
   default     = "001"
   validation {
     condition     = (length(var.spoke_def) == 3) && tonumber(var.spoke_def) != null
@@ -32,10 +34,16 @@ variable "org" {
     environment_type  = string
     environment_name  = string
   })
+  # org:
+  #   organization_name: "myorg"      # (Required) The name of the organization.
+  #   organization_unit: "myou"       # (Required) The name of the organization unit.
+  #   environment_type: "dev"         # (Required) The type of the environment (e.g., dev, prod).
+  #   environment_name: "myenv"       # (Required) The name of the environment.
 }
 
 variable "extra_tags" {
   description = "Extra tags to add to the resources"
   type        = map(string)
+  # extra_tags: {}                    # (Optional) Extra tags to add to the resources.
   default     = {}
 }
