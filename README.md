@@ -146,7 +146,7 @@ Available targets:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | ~> 7.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 7.9.0 |
 
 ## Modules
 
@@ -196,21 +196,19 @@ File a GitHub [issue](https://github.com/cloudopsworks/terraform-module-gcp-pipe
 
 
 ## DevOps Tools
-[]()
+[Our Products](https://cloudopsworks.co/products/)
+[CI/CD Blueprint](https://cloudopsworks.co/cicd-blueprint/)
+[Open Source](https://cloudopsworks.co/open-source/)
+
 ## Slack Community
 
 
 ## Newsletter
-
-## Office Hours
-
-## Contributing
+[Resources Directory](https://cloudopsworks.co/resources/)
 
 ### Bug Reports & Feature Requests
 
 Please use the [issue tracker](https://github.com/cloudopsworks/terraform-module-gcp-pipeline-blueprint/issues) to report any bugs or file feature requests.
-
-### Developing
 
 
 
@@ -301,4 +299,4 @@ This project is maintained by [Cloud Ops Works LLC][website].
   [share_reddit]: https://reddit.com/submit/?url=https://github.com/cloudopsworks/terraform-module-gcp-pipeline-blueprint
   [share_facebook]: https://facebook.com/sharer/sharer.php?u=https://github.com/cloudopsworks/terraform-module-gcp-pipeline-blueprint
   [share_email]: mailto:?subject=Terraform+GCP+Pipeline+Blueprint+Module&body=https://github.com/cloudopsworks/terraform-module-gcp-pipeline-blueprint
-  [beacon]: https://ga-beacon.cloudospworks.co/G-QMZVYYN2VN/cloudopsworks/terraform-module-gcp-pipeline-blueprint?pixel&cs=github&cm=readme&an=terraform-module-gcp-pipeline-blueprint
+  [beacon]: https://ga-beacon.cloudopsworks.co/G-QMZVYYN2VN/cloudopsworks/terraform-module-gcp-pipeline-blueprint?pixel&cs=github&cm=readme&an=terraform-module-gcp-pipeline-blueprint
